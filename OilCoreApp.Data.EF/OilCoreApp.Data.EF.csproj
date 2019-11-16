@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Configurations\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OilCoreApp.Data\OilCoreApp.Data.csproj" />
+    <ProjectReference Include="..\OilCoreApp.Infrastructure\OilCoreApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\OilCoreApp.Utilities\OilCoreApp.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

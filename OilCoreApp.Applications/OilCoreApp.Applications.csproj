@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Implementation\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="AutoMapper\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OilCoreApp.Data.EF\OilCoreApp.Data.EF.csproj" />
+    <ProjectReference Include="..\OilCoreApp.Data\OilCoreApp.Data.csproj" />
+    <ProjectReference Include="..\OilCoreApp.Utilities\OilCoreApp.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
