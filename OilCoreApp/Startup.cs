@@ -34,7 +34,7 @@ namespace OilCoreApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), o=> o.MigrationsAssembly("OilCoreApp.Data.EF")));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), o => o.MigrationsAssembly("OilCoreApp.Data.EF")));
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             //Configuration Identity
@@ -55,7 +55,7 @@ namespace OilCoreApp
                 options.User.RequireUniqueEmail = true;
             });
 
-            services.AddAutoMapper();
+            //services.AddAutoMapper();
 
 
             //Add Application Service
@@ -64,8 +64,8 @@ namespace OilCoreApp
 
 
 
-            services.AddSingleton(Mapper.Configuration);
-            services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
+            //services.AddSingleton(Mapper.Configuration);
+            //services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
 
             services.AddTransient<DbInitializer>();
             services.AddTransient<Umbraco.Core.IEmailSender, EmailSender>();
@@ -103,6 +103,10 @@ namespace OilCoreApp
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+
+                routes.MapRoute(
+                    name: "areaRoute",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
         }
     }
