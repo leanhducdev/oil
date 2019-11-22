@@ -15,7 +15,7 @@ namespace OilCoreApp.Data.Entities
 
 
         [StringLength(50)]
-        [Column(TypeName = "vachar")]
+        [Column(TypeName = "varchar(50)")]
         public string TagId { get; set; }
 
         [ForeignKey("ProductId")]

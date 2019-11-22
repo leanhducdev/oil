@@ -56,8 +56,11 @@ namespace OilCoreApp.Data.EF
                     UserName = "admin",
                     FullName = "Administrator",
                     Email = "admin@gmail.com",
-                    Balance = 0
-                }, "123654$");
+                    Balance = 0,
+                    DateCreated = DateTime.Now,
+                    Modified = DateTime.Now,
+                    Status = Status.Active
+                }, "123654$") ;
                 var user = await _userManager.FindByNameAsync("admin");
                 await _userManager.AddToRoleAsync(user, "Admin");
             }

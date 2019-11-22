@@ -8,12 +8,11 @@ using System.Text;
 
 namespace OilCoreApp.Data.EF.Configurations
 {
-    public class FunctionConfiguration : DbEntityConfiguration<Functions>
+    public class BlogTagConfiguration : DbEntityConfiguration<BlogTag>
     {
-        public override void Configure(EntityTypeBuilder<Functions> entity)
+        public override void Configure(EntityTypeBuilder<BlogTag> entity)
         {
-            entity.HasKey(c => c.Id);
-            entity.Property(c => c.Id).IsRequired().HasColumnType("varchar(128)");
+            entity.Property(c => c.TagId).HasMaxLength(50).IsRequired().HasColumnType("varchar(50)");
         }
     }
 }

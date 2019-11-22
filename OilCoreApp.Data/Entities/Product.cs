@@ -54,7 +54,7 @@ namespace OilCoreApp.Data.Entities
         public string SeoPageTittle { get; set; }
 
         [StringLength(255)]
-        [Column(TypeName ="varchar")]
+        [Column(TypeName ="varchar(255)")]
         public string SeoAlias { get; set; }
         [StringLength(255)]
         public string SeoKeywords { get; set; }

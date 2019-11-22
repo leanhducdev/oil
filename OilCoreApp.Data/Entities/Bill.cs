@@ -16,7 +16,7 @@ namespace OilCoreApp.Data.Entities
         public Bill() { }
 
         public Bill(string customerName, string customerAdress, string customerMobile, string customerMessage,
-            BillStatus billStatus, PaymentMethod paymentMethod, Status status, string customerId)
+            BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid customerId)
         {
             CustomerName = customerName;
             CustomerAddress = customerAdress;
@@ -29,7 +29,7 @@ namespace OilCoreApp.Data.Entities
         }
 
         public Bill(int id, string customerName, string customerAdress, string customerMobile, string customerMessage,
-            BillStatus billStatus, PaymentMethod paymentMethod, Status status, string customerId)
+            BillStatus billStatus, PaymentMethod paymentMethod, Status status, Guid customerId)
         {
             Id = id;
             CustomerName = customerName;
@@ -49,8 +49,8 @@ namespace OilCoreApp.Data.Entities
         [Required]
         public string CustomerMessage { get; set; }
         public BillStatus BillStatus { get; set; }
-        [StringLength(450)]
-        public string CustomerId { get; set; }
+        
+        public Guid CustomerId { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
         [DefaultValue(Status.Active)]
         public Status Status { get; set; }

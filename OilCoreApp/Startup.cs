@@ -37,8 +37,32 @@ namespace OilCoreApp
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), o=> o.MigrationsAssembly("OilCoreApp.Data.EF")));
             services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
+            //Configuration Identity
+            services.Configure<IdentityOptions>(options =>
+            {
+                //Password Setting
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+
+                //Lockout Setting
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+
+                //User Setting
+                options.User.RequireUniqueEmail = true;
+            });
+
+            services.AddAutoMapper();
+
+
+            //Add Application Service
             services.AddScoped<UserManager<AppUser>, UserManager<AppUser>>();
             services.AddScoped<RoleManager<AppRole>, RoleManager<AppRole>>();
+
+
 
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
@@ -60,7 +84,7 @@ namespace OilCoreApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env,DbInitializer dbInitializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -80,8 +104,6 @@ namespace OilCoreApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            dbInitializer.Seed().Wait();
         }
     }
 }
